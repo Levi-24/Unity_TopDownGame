@@ -1,48 +1,46 @@
 using UnityEngine;
 
 [SelectionBase]
-
 public class Player_Controller : MonoBehaviour
 {
-    #region Editor Data
-    [Header("Movement Attributes")]
-    [SerializeField] float _moveSpeed = 50f;
+    [Header("Movement Settings")]
+    [SerializeField] private float moveSpeed = 200f;
+    [SerializeField] private float dashSpeed = 1000f;
+    [SerializeField] private float dashDuration = 0.1f;
+    [SerializeField] private float dashCooldown = 1f;
 
     [Header("Dependencies")]
-    [SerializeField] Rigidbody2D _rb;
-    #endregion
+    [SerializeField] private Rigidbody2D rb;
 
-    #region Internal Data
-    private Vector2 _moveDir = Vector2.zero;
-    #endregion
+    private Vector2 moveDirection;
+    private bool isDashing;
+    private float dashEndTime;
+    private float nextDashTime;
 
-    #region Tick
     private void Update()
     {
-        GatherInput();
+        moveDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time >= nextDashTime)
+        {
+            StartDash();
+        }
     }
 
     private void FixedUpdate()
     {
-        MovementUpdate();
-    }
-    #endregion
+        rb.velocity = moveDirection * (isDashing ? dashSpeed : moveSpeed) * Time.fixedDeltaTime;
 
-    #region Input Logic
-    private void GatherInput()
+        if (isDashing && Time.time >= dashEndTime)
+        {
+            isDashing = false;
+        }
+    }
+
+    private void StartDash()
     {
-        _moveDir.x = Input.GetAxisRaw("Horizontal");
-        _moveDir.y = Input.GetAxisRaw("Vertical");
-
-        print(_moveDir);
+        isDashing = true;
+        dashEndTime = Time.time + dashDuration;
+        nextDashTime = Time.time + dashCooldown;
     }
-    #endregion
-
-    #region Movement Logic
-    private void MovementUpdate()
-    {
-        _rb.velocity = _moveDir * _moveSpeed * Time.fixedDeltaTime;
-    }
-    #endregion
-
 }
