@@ -11,6 +11,7 @@ public class Player_Controller : MonoBehaviour
 
     [Header("Dependencies")]
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private TrailRenderer tr;
 
     private Vector2 moveDirection;
     private bool isDashing;
