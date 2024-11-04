@@ -50,6 +50,15 @@ TagManager:
   - name: Vegetation
     uniqueID: 1566007209
     locked: 0
+  - name: Building
+    uniqueID: 2145797805
+    locked: 0
+  - name: BuildingAccessories
+    uniqueID: 852790349
+    locked: 0
   - name: Character
     uniqueID: 3732480573
+    locked: 0
+  - name: FX
+    uniqueID: 120888017
     locked: 0
