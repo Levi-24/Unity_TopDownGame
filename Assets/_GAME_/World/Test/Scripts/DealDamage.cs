@@ -20,7 +20,7 @@ public class DealDamage : MonoBehaviour
 
                 playerController.ApplyKnockback(knockbackDirection, knockbackForce);
                 playerController.TakeDamage(damageAmount);
-
+                playerController.PlayBloodParticle(collision.transform.position);
             }
         }
     }

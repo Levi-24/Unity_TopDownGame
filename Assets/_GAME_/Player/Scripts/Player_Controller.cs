@@ -24,6 +24,7 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private TrailRenderer tr;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private ParticleSystem bloodParticle;
 
 
     [SerializeField] private TMP_Text tmpText;
@@ -113,6 +114,19 @@ public class Player_Controller : MonoBehaviour
             // Handle player death (e.g., restart game, show game over screen)
         }
     }
+
+    public void PlayBloodParticle(Vector2 hitPosition)
+    {
+        GameObject particleObject = Instantiate(bloodParticle.gameObject, hitPosition, Quaternion.identity);
+
+        ParticleSystem ps = particleObject.GetComponent<ParticleSystem>();
+
+        if (ps != null)
+        {
+            ps.Play();
+        }
+    }
+
 
     private IEnumerator InvincibilityCoroutine()
     {
