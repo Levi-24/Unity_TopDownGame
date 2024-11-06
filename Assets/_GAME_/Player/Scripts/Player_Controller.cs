@@ -130,7 +130,7 @@ public class Player_Controller : MonoBehaviour
 
     private IEnumerator InvincibilityCoroutine()
     {
-        float flashDuration = 1f; // Duration of invincibility effect
+        float flashDuration = .6f; // Duration of invincibility effect
         float flashInterval = 0.1f; // Time between flashes
 
         for (float t = 0; t < flashDuration; t += flashInterval)

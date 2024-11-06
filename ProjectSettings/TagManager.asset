@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Crate
   layers:
   - Default
   - TransparentFX
@@ -55,6 +56,9 @@ TagManager:
     locked: 0
   - name: BuildingAccessories
     uniqueID: 852790349
+    locked: 0
+  - name: Button
+    uniqueID: 3585207287
     locked: 0
   - name: Character
     uniqueID: 3732480573
